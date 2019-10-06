@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>调用node接口</title>
+</head>
+
+<body>
+  <h1>2019-06-16</h1>
+  用户:<input type="text" id="user"><br>
+  密码:<input type="password" id="password"><br>
+  <button onclick="login()">登录</button>
+
+  <script type="text/javascript">
+
+    // 登录 get
+    /* function login() {
+      const user = document.getElementById('user').value;
+      const password = document.getElementById('password').value;
+      let xhr = new XMLHttpRequest();
+      xhr.onreadystatuschange = function () {
+        if (xhr.readystatus === 4 && (xhr.status === 200 || xhr.status === 304)) {
+          console.log(xhr.responseText);
+        }
+      };
+      xhr.open("GET", `/user?user=${user}&password=${password}`, true);
+      xhr.send();
+    } */
+
+    // 登录 post
+    function login() {
+      const user = document.getElementById('user').value;
+      const password = document.getElementById('password').value;
+      const data = `user=${user}&password=${password}`;
+      let xhr = new XMLHttpRequest();
+      xhr.onreadystatuschange = function () {
+        if (xhr.readystatus === 4 && (xhr.status === 200 || xhr.status === 304)) {
+          console.log(xhr.responseText);
+        }
+      };
+      xhr.open("POST", `/user`, true);
+      xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded; charset=utf-8');
+      xhr.send(data);
+    }
+
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>setCookie</title>
+</head>
+
+<body>
+  <input type="button" value="clickMe" onclick="get()">
+
+  <script>
+    function get() {
+      const url = 'http://localhost:8080/a';
+      const xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = () => {
+        if (xhr.readyState === 4 && (xhr.status === 200 || xhr.status === 304)) {
+          alert(xhr.responseText);
+        }
+      }
+      xhr.open('GET', url, true);
+      xhr.send();
+    }
+  </script>
+</body>
+
+</html>

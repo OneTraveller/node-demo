@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <h1>2019-06-15 11:05</h1>
+
+  <button onclick="get()">click</button>
+
+  <script>
+    //post
+    function post() {
+      console.log('post')
+      //请求参数、url、创建XMLHttpRequest
+      /* let data = 'name=tom&age=18',
+        url = 'xhr.php',
+        xhr = new XMLHttpRequest();
+
+      xhr.open('post', url);
+      //设置header
+      xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+      xhr.send(data);
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && (xhr.status === 200 || xhr.status === 304)) {
+          console.log(xhr.responseText);
+        }
+      } */
+    }
+
+    function get() {
+      console.log('get')
+      //创建XMLHttpRequest
+      let xhr = new XMLHttpRequest();
+      //监听响应
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && (xhr.status === 200 || xhr.status === 304)) {
+          console.log(xhr.responseText);
+        }
+      };
+      xhr.open("GET", "index.html/user?url=www.runoob.com", true);
+      xhr.send();
+    }
+  </script>
+
+</body>
+
+</html>

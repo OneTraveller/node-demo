@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+
+  用户：<input type="text" id="username"><br />
+  密码：<input type="password" id="password"><br />
+  <input type="button" value="注册" onclick="action('reg')">
+  <input type="button" value="登录" onclick="action('login')">
+
+  <script>
+
+    function action(type) {
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+      if (!username || !password) return alert('用户名或密码不能为空');
+      const url = `http://localhost:8080/${type}?username=${username}&password=${password}`;
+      if (type === 'reg') get(url);
+      if (type === 'login') post(`http://localhost:8080/login`, username, password);
+    }
+
+    function get(url) {
+      const xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = () => {
+        if (xhr.readyState === 4 && (xhr.status === 200 || xhr.status === 304)) {
+          alert(xhr.responseText);
+        }
+      }
+      xhr.open('GET', url, true);
+      xhr.send();
+    }
+
+    function post(url, username, password) {
+      //请求参数、url、创建XMLHttpRequest
+      let data = `username=${username}&password=${password}`,
+        xhr = new XMLHttpRequest();
+
+      xhr.open('post', url);
+      //设置header
+      xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+      xhr.send(data);
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && (xhr.status === 200 || xhr.status === 304)) {
+          alert(xhr.responseText);
+        }
+      }
+    }
+  </script>
+
+</body>
+
+</html>
